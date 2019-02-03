@@ -38,7 +38,7 @@ WORKING-STORAGE SECTION. 
           10 TAB-DISH    OCCURS 4 TIMES. 
              15 TAB-PRATO  PIC X(06). 
  
-01 SAIDA. 
+1 SAIDA. 
      05 SAI-DISH OCCURS 8 TIMES. 
           10 SAI-PRATO     PIC X(10). 
           10 SAI-VIRGULAS  PIC X(01). 
@@ -85,7 +85,7 @@ PROCEDURE DIVISION. 
              STOP RUN. 
         END-IF. 
  
-2        MOVE 1 TO IND.  
+        MOVE 1 TO IND.  
         PERFORM 150-CONSISTE-PRATOS UNTIL IND > 8. 
       
         IF WS-INFORMOU-PRATO EQUAL 'N'
