@@ -1,4 +1,5 @@
- Restaurant Order App (technical test)  
+
+Restaurant Order App (technical test)  
  LINGUAGEM : COBOL 
  
 ================================================================================== 
@@ -18,6 +19,7 @@ WORKING-STORAGE SECTION. 
 77 WS-PRI-WINE             PIC X(01) VALUE ‘S’. 
 77 WS-PRI-CAKE             PIC X(01) VALUE ‘S’. 
 77 WS-ERRO                 PIC X(01) VALUE ‘N’. 
+77 WS-INFORMOU-PRATO       PIC X(01) VALUE ‘N’.       
 77 WS-PRATO-TEMP           PIC X(01) VALUE SPACES. 
 77 WS-QTD-COFFEE           PIC 9(01) VALUE ZEROS. 
 77 WS-QTD-POTATO           PIC 9(01) VALUE ZEROS. 
@@ -84,8 +86,14 @@ PROCEDURE DIVISION. 
         END-IF. 
  
         MOVE 1 TO IND.  
-        PERFORM 150-CONSISTE-PRATOS UNTIL IND > 8. CONSISTE
- 
+        PERFORM 150-CONSISTE-PRATOS UNTIL IND > 8. 
+      
+        IF WS-INFORMOU-PRATO EQUAL 'N'
+            DISPLAY ‘NAO INFORMOU PRATO’ 
+            DISPLAY ‘ERRO CARTAO CONTROLE ’  CARTAO-CONTROLE 
+            STOP RUN. 
+        END-IF.       
+    
 100-EXIT. 
 
 *******  CONSISTE DADOS DA ENTRADA INFORMADOS VIA CARTÃO CONTROLE JCL
@@ -100,11 +108,21 @@ PROCEDURE DIVISION. 
         END-IF. 
  
         IF  CC-VIRGULAS (IND)  NOT EQUAL ‘,’ AND ‘ ‘ 
-            DISPLAY ‘VIRGULA INVALIDA’ 
+            DISPLAY ‘VIRGULA INVALIDA’   
             DISPLAY ‘ERRO CARTAO CONTROLE ’  CARTAO-CONTROLE 
             STOP RUN. 
         END-IF. 
-         
+      
+        IF CC-PERIODO EQUAL ‘MORNING’ AND
+           CC-PRATO (IND) EQUAL '1' OR '2' OR '3' 
+           MOVE 'S' TO WS-INFORMOU-PRATO
+        END-IF.
+      
+        IF CC-PERIODO EQUAL ‘NIGHT’ AND
+           CC-PRATO (IND) EQUAL '1' OR '2' OR '3' OR '4'
+           MOVE 'S' TO WS-INFORMOU-PRATO
+        END-IF.
+               
         ADD 1 TO IND. 
  
 150-EXIT. 
