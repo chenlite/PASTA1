@@ -271,7 +271,7 @@ PROCEDURE DIVISION. 
                 ELSE  
                      ADD     1                                        TO  WS-QTD-POTATO      
                 END-IF           
-            END-IF 
+           END-IF 
            IF CC-PRATO (IND) EQUAL ‘3’ 
                 ADD    1                                              TO IND-SAI  
                 IF  WS-PRI-WINE EQUAL ‘S’ 
@@ -294,12 +294,12 @@ PROCEDURE DIVISION. 
                      MOVE ‘S’                                         TO WS-ERRO  
                 END-IF           
            END-IF 
-            IF  CC-PRATO (IND)  IS NUMERIC AND 
+           IF CC-PRATO (IND)  IS NUMERIC AND 
                   CC-PRATO (IND) > ‘4’ 
                   ADD    1                                            TO IND-SAI  
                   MOVE 'ERROR’                                        TO SAI-PRATO (IND-SAI)  
                   MOVE ‘S’                                            TO WS-ERRO  
-            END-IF 
+           END-IF 
        END-IF.      
  
        ADD 1 TO IND. 
