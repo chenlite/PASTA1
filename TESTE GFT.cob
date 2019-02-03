@@ -1,6 +1,6 @@
 
 Restaurant Order App (technical test)  
- LINGUAGEM : COBOL 
+LINGUAGEM : COBOL 
  
 ================================================================================== 
 IDENTIFICATION DIVISION. 
@@ -85,7 +85,7 @@ PROCEDURE DIVISION. 
              STOP RUN. 
         END-IF. 
  
-        MOVE 1 TO IND.  
+2        MOVE 1 TO IND.  
         PERFORM 150-CONSISTE-PRATOS UNTIL IND > 8. 
       
         IF WS-INFORMOU-PRATO EQUAL 'N'
@@ -139,7 +139,7 @@ PROCEDURE DIVISION. 
 
 *******  COMPARA ORDEM DOS PRATOS        
       
-50-COMPARA-PRATOS SECTION. 
+250-COMPARA-PRATOS SECTION. 
  
         IF  CC-PRATO (WS-I)  IS NUMERIC AND 
             CC-PRATO (WS-K)  IS NUMERIC 
