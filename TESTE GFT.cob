@@ -38,7 +38,7 @@ WORKING-STORAGE SECTION. 
           10 TAB-DISH    OCCURS 4 TIMES. 
              15 TAB-PRATO  PIC X(06). 
  
-1 SAIDA. 
+01 SAIDA. 
      05 SAI-DISH OCCURS 8 TIMES. 
           10 SAI-PRATO     PIC X(10). 
           10 SAI-VIRGULAS  PIC X(01). 
