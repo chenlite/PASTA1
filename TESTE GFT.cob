@@ -143,7 +143,7 @@ PROCEDURE DIVISION. 
  
         IF  CC-PRATO (WS-I)  IS NUMERIC AND 
             CC-PRATO (WS-K)  IS NUMERIC 
-              IF CC-PRATO (WS-I) > CC-PRATO (WS-K) 
+              IF CC-PRATO (WS-I) > CC-PRATO (WS-K) 
                    MOVE CC-PRATO (WS-I)  TO WS-PRATO-TEMP 
                    MOVE CC-PRATO (WS-K)  TO CC-PRATO (WS-I) 
                    MOVE WS-PRATO-TEMP    TO CC-PRATO (WS-K) 
@@ -179,17 +179,22 @@ PROCEDURE DIVISION. 
  
        MOVE 1 TO IND.  
        PERFORM 450-MONTA-PRATOS UNTIL IND > 8 OR WS-ERRO = ‘S’.
+      
       ****** MONTA CAMPO DE SAIDA PARA MAIS DE UM CAFÉ- COFFEE(xN)
        IF WS-QTD-COFFEE > 1 
             MOVE WS-QTD-COFFEE TO WS-QTD  
             MOVE WS-CAMPO      TO SAI-PRATO (WS-IND-COFFEE) 
        END-IF.
+      
       ****** MONTA CAMPO DE SAIDA PARA MAIS DE UM PRATO DE POTATO - POTATO(xN)
        IF WS-QTD-POTATO > 1 
             MOVE WS-QTD-POTATO TO WS-QTD  
             MOVE WS-CAMPO      TO SAI-PRATO (WS-IND-POTATO) 
        END-IF. 
- 
+      
+      ****** LIMPA ÚLTIMA VIRGULA
+       MOVE ‘ ’                TO SAI-VIRGULAS (IND-SAI). 
+      
       ****** MOSTRA RESULTADO DE SAIDA
        DISPLAY ‘SAIDA = ’  SAIDA.  
  
